@@ -12,6 +12,8 @@
             padding: 0;
             background: linear-gradient(135deg, #f0e6f6, #ffe1e1);
             height: 100vh;
+            overflow: hidden;
+            position: relative;
         }
         header {
             background-color: rgba(255, 105, 97, 0.7);
@@ -51,9 +53,48 @@
             font-family: 'Dancing Script', cursive;
             font-size: 18px;
         }
+        /* Confetti styles */
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background-color: #ff6f61;
+            animation: fall 4s linear infinite;
+        }
+        .confetti:nth-child(2n) {
+            background-color: #ffd700;
+        }
+        .confetti:nth-child(3n) {
+            background-color: #98ddca;
+        }
+        .confetti:nth-child(4n) {
+            background-color: #ffcccb;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Confetti Containers -->
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <!-- More confetti elements can be added as needed -->
+
     <header>
         <h1>Happy Birthday Dorcas</h1>
         <p>For someone who deserves all the finest and sweetest things in the world.</p>
@@ -68,8 +109,28 @@
     <footer>
         <p>Created with Love by the Minister of Birthday Affairs.</p>
     </footer>
+
+    <!-- JavaScript for Confetti Animation -->
+    <script>
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw'; // Random position along the viewport width
+            confetti.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random duration between 2 to 5 seconds
+            document.body.appendChild(confetti);
+
+            // Remove confetti after it falls
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+
+        // Generate confetti at intervals
+        setInterval(createConfetti, 200);
+    </script>
 </body>
 </html>
+
 
 
 
