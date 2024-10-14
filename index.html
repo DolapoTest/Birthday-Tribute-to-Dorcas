@@ -53,31 +53,62 @@
             font-family: 'Dancing Script', cursive;
             font-size: 18px;
         }
-        /* Confetti styles */
-        .confetti {
+        /* Balloon styles */
+        .balloon {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 10px;
-            height: 10px;
+            width: 50px;
+            height: 80px;
             background-color: #ff6f61;
-            animation: fall 4s linear infinite;
+            border-radius: 50%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .confetti:nth-child(2n) {
+        .balloon:before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 2px;
+            height: 30px;
+            background-color: #555;
+            transform: translateX(-50%);
+        }
+        .balloon:nth-child(2n) {
             background-color: #ffd700;
         }
-        .confetti:nth-child(3n) {
+        .balloon:nth-child(3n) {
             background-color: #98ddca;
         }
-        .confetti:nth-child(4n) {
+        .balloon:nth-child(4n) {
             background-color: #ffcccb;
         }
 
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
+        /* Balloon positions (left and right) */
+        .balloon-group {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .balloon-group.left {
+            left: 5%;
+        }
+        .balloon-group.right {
+            right: 5%;
+        }
+
+        /* Balloons movement */
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
             }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+        .balloon {
+            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
@@ -93,7 +124,18 @@
     <div class="confetti"></div>
     <div class="confetti"></div>
     <div class="confetti"></div>
-    <!-- More confetti elements can be added as needed -->
+
+    <!-- Balloon Groups -->
+    <div class="balloon-group left">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+    <div class="balloon-group right">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
 
     <header>
         <h1>Happy Birthday Dorcas</h1>
@@ -130,6 +172,7 @@
     </script>
 </body>
 </html>
+
 
 
 
